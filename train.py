@@ -59,7 +59,7 @@ df = df.drop_duplicates(keep='first')
 
 df['transformed_text'] = df['text'].apply(transform_text)
 
-tf = TfidfVectorizer(max_features=2000)
+tf = TfidfVectorizer(max_features=5000, ngram_range=(1,2))
 
 X = tf.fit_transform(df['transformed_text']).toarray()
 

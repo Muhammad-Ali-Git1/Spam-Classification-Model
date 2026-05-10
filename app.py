@@ -16,10 +16,14 @@ tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
 
 ps = PorterStemmer()
 def transform_text(text):
+
+    # lowercase
     text = text.lower()
 
-    text = text.split()   
+    # tokenization
+    text = nltk.word_tokenize(text)
 
+    # remove special characters / non-alphanumeric
     y = []
     for i in text:
         if i.isalnum():
@@ -28,6 +32,7 @@ def transform_text(text):
     text = y[:]
     y.clear()
 
+    # remove stopwords + punctuation
     for i in text:
         if i not in stopwords.words('english') and i not in string.punctuation:
             y.append(i)
@@ -35,6 +40,7 @@ def transform_text(text):
     text = y[:]
     y.clear()
 
+    # stemming
     for i in text:
         y.append(ps.stem(i))
 

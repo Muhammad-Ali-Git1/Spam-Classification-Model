@@ -16,27 +16,27 @@ tfidf = pickle.load(open('vectorizer.pkl', 'rb'))
 
 ps = PorterStemmer()
 def transform_text(text):
-
     text = text.lower()
-    text = nltk.word_tokenize(text)
+
+    text = text.split()   
 
     y = []
-    for word in text:
-        if word.isalnum():
-            y.append(word)
+    for i in text:
+        if i.isalnum():
+            y.append(i)
 
     text = y[:]
     y.clear()
 
-    for word in text:
-        if word not in stopwords.words('english') and word not in string.punctuation:
-            y.append(word)
+    for i in text:
+        if i not in stopwords.words('english') and i not in string.punctuation:
+            y.append(i)
 
     text = y[:]
     y.clear()
 
-    for word in text:
-        y.append(ps.stem(word))
+    for i in text:
+        y.append(ps.stem(i))
 
     return " ".join(y)
 st.title("📧 Email/SMS Spam Classifier")

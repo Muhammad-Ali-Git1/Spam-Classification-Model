@@ -21,7 +21,7 @@ def transform_text(text):
     text = text.lower()
 
     # tokenization
-    text = nltk.word_tokenize(text)
+    text = text.split()
 
     # remove special characters / non-alphanumeric
     y = []
@@ -45,7 +45,7 @@ def transform_text(text):
         y.append(ps.stem(i))
 
     return " ".join(y)
-st.title("📧 Email/SMS Spam Classifier")
+st.title("Email/SMS Spam Classifier")
 st.write("Enter a message and check if it's spam or not")
 
 input_sms = st.text_area("Enter your message here:")
